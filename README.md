@@ -41,6 +41,7 @@ have been dealt otherwise.
       
 ###A Glimpse
 
+```
 [W/M resistant]
          { --.\  |         
            '-._\\ | (\___                                
@@ -57,3 +58,4 @@ Select a Move:
 [2] Lu Bu's Skullpierce Arrow       (r)
 [3] Kvothe's Chandrian Magicks      (r)
 [4] Divine Shield Mask              (r)
+```
