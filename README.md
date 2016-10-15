@@ -24,7 +24,7 @@ an (r) next to it. These are the moves:
 1 is a warrior move, 2 is an archer move, 3 is a mage move, and 4 is a shield.
 
 Ulavachakara can be resistant to any move types at any time, and that is indicated 
-above his icon. For example, if it says [W/A resistant] ontop of Ulavachakara,
+above his icon. For example, if it says [W/M resistant] ontop of Ulavachakara,
 that means he is resistant to warrior and mage attacks at that time.
 
 Ulavachakara has a dragon breath attack, which he will shoot periodically. If your
