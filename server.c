@@ -9,6 +9,10 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <time.h>
+#include <pthread.h>
+
+#include "strings.h"
+#include "defns.h"
 
 int main(int argc, char **argv)
 {
@@ -35,21 +39,23 @@ int main(int argc, char **argv)
     // associate the socket fd with the address
     bind(listenfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
 
-    fprintf(stderr, "%d:%d", serv_addr.sin_addr.s_addr, serv_addr.sin_port);
+    fprintf(stderr, "%d:%d\n", serv_addr.sin_addr.s_addr, serv_addr.sin_port);
     // listen on the socket, with max connection queue len of 10
     listen(listenfd, 10);
 
-    while(1) {
+    while (1) {
         // pop a listener off the connection queue (blocking)
-        connfd = accept(listenfd, (struct sockaddr *)NULL, NULL);
+        connfd = accept(listenfd, NULL, NULL);
+      
+        struct client *client = malloc(sizeof(struct client));
+        client->fd = connfd;
 
-        ticks = time(NULL);
-        snprintf(sendbfr, sizeof(sendbfr), "%.24s\r\n", ctime(&ticks));
-        write(connfd, sendbfr, strlen(sendbfr));
-
-        close(connfd);
-        sleep(1);
+        // handle client in its own thread
+        pthread_t thread;
+        pthread_create(&thread, NULL, hndl_clnt, (void *)client); 
     }
+
+    pthread_exit(NULL);
 
     return 0;
 }
