@@ -1,5 +1,5 @@
 all:
-	gcc -g server.c client.c -o ulavachakara
+	gcc -g server.c hndl_clnt.c -o ulavachakara
 
 clean:
 	rm -rf *.o ulavachakara *.dSYM
